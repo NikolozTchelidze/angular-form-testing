@@ -1,0 +1,73 @@
+<div class="main">
+    <h1>Do you drive ?</h1>
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <div>
+             <input type="radio" name="choice" id="Yes" [(ngModel)]="choice" value="Yes">
+            <label for="Yes">Yes</label>
+        </div>
+        <div>
+           <input type="radio" name="choice" id="No" [(ngModel)]="choice" value="No">
+            <label for="No">No</label> 
+        </div>
+        <div *ngIf="choice === 'Yes'">
+                <h2>Which transport you use ? </h2>
+                <input type="radio" name="choiceTransport" id="Car" value="Car" [(ngModel)]="choiceTransport">
+                <label for="Car">Car</label>
+                <input type="radio" name="choiceTransport" id="Motorcycle" value="Motorcycle" [(ngModel)]="choiceTransport">
+                <label for="Motorcycle">Motorcycle</label>
+
+                <input type="radio" name="choiceTransport" id="Bus" value="Bus" [(ngModel)]="choiceTransport">
+                <label for="Bus">Bus</label>
+
+                <input type="radio" name="choiceTransport" id="Subway" value="Subway" [(ngModel)]="choiceTransport">
+                <label for="Subway">Subway</label>
+        </div>
+        <div *ngIf="choice === 'No'">
+                <h2>Why don't you drive?</h2>
+                <input type="text" name="reason" [(ngModel)]="reason" >
+        </div>
+        <div *ngIf="choiceTransport === 'Car'">
+                <h2>What kind of car u drive? </h2>
+                <input id="Electric" name="kind" type="radio" value="Electric" [(ngModel)]="kind">Electric
+                <input id="Gasoline" name="kind" type="radio" value="Gasoline" [(ngModel)]="kind">Gasoline
+        </div>
+        <div *ngIf="choiceTransport === 'Motorcycle'">
+            <h2>What kind of motorcycle u drive? </h2>
+             <input id="Sport" name="carBrand" type="radio"value="Sport" [(ngModel)]="kind">Sport
+             <input id="Street" name="carBrand" type="radio"value="Street" [(ngModel)]="kind">Street
+             <input id="Enduro" name="carBrand" type="radio"value="Enduro" [(ngModel)]="kind">Enduro
+        </div>
+        <div *ngIf="choiceTransport === 'Bus'">
+            <h2>Why do u prefer bus ? </h2>
+            <input type="text" name="prefer" value="" [(ngModel)]="prefer">
+        </div>
+        <div *ngIf="choiceTransport === 'Subway'">
+            <h2>Why do u prefer subway? </h2>
+            <input type="text" name="prefer" value="" [(ngModel)]="prefer">
+        </div>
+        <div *ngIf="kind === 'Electric'">
+            <h2>What is ur car brand ?</h2>
+            <input type="radio" name="carBrand" id="Tesla" value="Tesla" [(ngModel)]="carBrand" >Tesla
+            <input type="radio" name="carBrand" id="Bmw" value="Bmw" [(ngModel)]="carBrand">Bmw
+            <input type="radio" name="carBrand" id="Audi" value="Audi" [(ngModel)]="carBrand">Audi
+        </div>
+        <div *ngIf="kind === 'Gasoline'">
+            <h2>What is ur car brand ?</h2>
+            <input type="text" name="carBrand" id="Brand"  [(ngModel)]="carBrand">
+        </div>
+        <button type="submit">Submit</button>
+        <div *ngIf="formData.length > 0">
+            <h2>Submitted Form Data</h2>
+            <ul>
+                <li *ngFor="let data of formData">
+                    <strong>Choice:</strong> {{ data.choice }}<br>
+                    <strong>Transport:</strong> {{ data.choiceTransport }}<br>
+                    <strong>Kind:</strong> {{ data.kind }}<br>
+                    <strong>Reason:</strong> {{ data.reason }}<br>
+                    <strong>Prefer:</strong> {{ data.prefer }}<br>
+                    <strong>Car Brand:</strong> {{ data.carBrand }}<br>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
